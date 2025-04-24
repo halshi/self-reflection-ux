@@ -47,7 +47,7 @@ Or visit the GitHub Pages version online and try typing something you *shouldn't
 
 ## ⚖️ License
 MIT — feel free to reuse, remix, and improve.  
-Attribution appreciated: [@PauseToReflect](https://x.com/PauseToReflect)
+Attribution appreciated: [@FaceBeforePost](https://x.com/FaceBeforePost)
 
 ---
 
@@ -61,5 +61,5 @@ Attribution appreciated: [@PauseToReflect](https://x.com/PauseToReflect)
 ---
 
 ## 🙌 Credits
-Created by [@PauseToReflect](https://x.com/PauseToReflect)  
+Created by [@FaceBeforePost](https://x.com/FaceBeforePost)  
 Inspired by behavioral psychology and the kind of internet we wish we had.
