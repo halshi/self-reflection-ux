@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Self-Reflection UX Demo (Mobile)</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 1em;
+      background: #f4f4f4;
+    }
+    #container {
+      max-width: 480px;
+      margin: auto;
+      background: white;
+      padding: 1em;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    textarea {
+      width: 100%;
+      height: 120px;
+      padding: 10px;
+      font-size: 1.1em;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 14px;
+      font-size: 1.1em;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: black;
+      color: white;
+      display: none;
+      justify-content: flex-end;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+      text-align: center;
+      padding: 2em;
+    }
+    #overlay p, #overlay button {
+      display: none;
+    }
+    #overlay p.visible, #overlay button.visible {
+      display: block;
+    }
+    #overlay p {
+      font-size: 1.6em;
+      margin-bottom: 20px;
+    }
+    #overlay button {
+      margin-bottom: 10px;
+    }
+    .instruction {
+      font-size: 0.9em;
+      color: #555;
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h2>Post a Comment</h2>
+    <p class="instruction">Try typing something negative like “you're stupid” to see the effect.</p>
+    <textarea id="input" placeholder="Write something..."></textarea>
+    <button onclick="handlePost()">Post</button>
+  </div>
+
+  <div id="overlay">
+    <p id="overlayText">Look at your face, and chill.</p>
+    <button id="postBtn" onclick="proceed()">Post anyway</button>
+    <button id="cancelBtn" onclick="cancel()" style="background:#666;">Cancel</button>
+  </div>
+
+  <script>
+    const bannedWords = ["die", "stupid", "idiot", "kill", "worthless"];
+
+    function handlePost() {
+      const input = document.getElementById("input");
+      const text = input.value.toLowerCase();
+      const hasHate = bannedWords.some(word => text.includes(word));
+
+      if (hasHate) {
+        document.getElementById("overlay").style.display = "flex";
+        document.getElementById("overlayText").classList.remove("visible");
+        document.getElementById("postBtn").classList.remove("visible");
+        document.getElementById("cancelBtn").classList.remove("visible");
+
+        setTimeout(() => {
+          document.getElementById("overlayText").textContent = "Do you really want to post this?";
+          document.getElementById("overlayText").classList.add("visible");
+          document.getElementById("postBtn").classList.add("visible");
+          document.getElementById("cancelBtn").classList.add("visible");
+        }, 3000);
+      } else {
+        alert("Comment posted safely.");
+        input.value = "";
+      }
+    }
+
+    function proceed() {
+      alert("Comment posted (after reflection).");
+      document.getElementById("input").value = "";
+      document.getElementById("overlay").style.display = "none";
+    }
+
+    function cancel() {
+      document.getElementById("overlay").style.display = "none";
+    }
+  </script>
+</body>
+</html>
